@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивная открытка с текстом и картинкой</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(89, 207, 89);
+            text-align: center;
+        }
+        .container {
+            background-color: rgb(188, 243, 188);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 50px auto;
+            max-width: 80%;
+        }
+        .btn {
+            background-color: rgb(89, 207, 89);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: rgb(49, 167, 49);
+        }
+        .greeting-card {
+            margin-top: 20px;
+        }
+        #card-image {
+            width: 612px;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Открытка с поздравлением</h1>
+
+        <div class="greeting-card">
+            <img id="card-image" src="https://media.istockphoto.com/id/1352406936/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%B4%D0%B5%D0%BD%D1%8C-%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BE%D1%82%D0%B5%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-23-%D1%84%D0%B5%D0%B2%D1%80%D0%B0%D0%BB%D1%8F-%D0%B4%D0%B5%D0%BD%D1%8C-%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%BE%D0%B9-%D0%B8-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9-%D0%B0%D1%80%D0%BC%D0%B8%D0%B9-%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%D0%B9.jpg?s=612x612&w=0&k=20&c=MO8PUTUV_mZuF8ctZYjjbiv9NIsAJpRm-nZWKOJyX9w=" alt="Открытка">
+            <p id="card-text">С Днем защитника Отчизны! <br> Света, радости, добра, <br> Мира, мужества, здоровья <br> И душевного тепла! <br> <br>  Позитива, оптимизма, <br> Доблести, отваги, сил, <br> Чтобы каждый день как праздник <br> В этой жизни просто был!</p>
+            <button class="btn" onclick="changeGreeting()">Изменить открытку</button>
+        </div>
+    </div>
+
+    <script>
+        const cardImages = ["https://media.istockphoto.com/id/1352406936/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%B4%D0%B5%D0%BD%D1%8C-%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%BD%D0%B8%D0%BA%D0%B0-%D0%BE%D1%82%D0%B5%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0-%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9-23-%D1%84%D0%B5%D0%B2%D1%80%D0%B0%D0%BB%D1%8F-%D0%B4%D0%B5%D0%BD%D1%8C-%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%BE%D0%B9-%D0%B8-%D1%80%D0%BE%D1%81%D1%81%D0%B8%D0%B9%D1%81%D0%BA%D0%BE%D0%B9-%D0%B0%D1%80%D0%BC%D0%B8%D0%B9-%D0%B7%D0%B5%D0%BB%D0%B5%D0%BD%D1%8B%D0%B9.jpg?s=612x612&w=0&k=20&c=MO8PUTUV_mZuF8ctZYjjbiv9NIsAJpRm-nZWKOJyX9w=", "https://img.freepik.com/free-vector/realistic-defenders-of-fatherland-day-illustration-with-flag-and-stars_23-2148807378.jpg", "https://media.istockphoto.com/id/1202915056/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D1%81%D1%87%D0%B0%D1%81%D1%82%D0%BB%D0%B8%D0%B2%D1%8B%D0%B9-%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%BD%D0%B8%D0%BA-%D0%BE%D1%82%D0%B5%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%B0.jpg?s=612x612&w=0&k=20&c=xc4cedhVkSQmuTTBVuM-6s5VJAFwW8KwSum2jKI_uxw=", "https://gefest-rost.ru/upload/images/novosty/23-s-dnem-zachshitnika.png", "https://donampa.ru/images/2023/02/22/23.jpg"];
+        const cardTexts = ["С Днем защитника Отчизны! <br> Света, радости, добра, <br> Мира, мужества, здоровья <br> И душевного тепла! <br> <br>  Позитива, оптимизма, <br> Доблести, отваги, сил, <br> Чтобы каждый день как праздник <br> В этой жизни просто был! <br>", "День защитника Отчизны <br> Отмечает вся страна, <br> Тех, кто нам спасает жизни <br> В боевые времена. <br> <br> Мы вас крепко поздравляем, <br> Уважаем всей душой, <br> Сил и мужества желаем,<br> И удачи вам большой!", "Всем защитникам Отчизны ― <br> Храбрым, сильным, боевым <br> Пожелаем счастья в жизни, <br> Дать отпор врагам любым! <br> <br> Не хандрить и не сдаваться, <br> К целям напролом идти, <br> Своих планов добиваться, <br> Лишь везенье знать в пути!<br> <br> Быть примером подражанья,<br> Пусть равняются на вас,<br> И пусть все ваши желанья <br> Исполняются на раз!", "Двадцать третье февраля <br> Отмечает вся страна — <br> Поздравляют всех мужчин, <br> Невзирая на их чин.<br> <br>Будьте преданы стране,<br>Будьте преданы семье,<br>Берегите мир от зла,<br>Не впускайте к нам врага!<br><br>Небо чистым будет пусть,<br>Не коснется сердца грусть,<br>Только радость на душе<br>И спокойствие в стране!", "Здоровья, мира, света, счастья,<br>Дней ярких, светлых, без ненастья,<br>Любви безоблачной, большой,<br>Всегда довольным быть судьбой!<br><br>Чтоб всё сбывалось, удавалось,<br>Лишь радость в жизни приключалась.<br>Веселья, смеха без конца<br>В день 23 Февраля!"];
+
+        let currentIndex = 0;
+
+        function changeGreeting() {
+            currentIndex = (currentIndex + 1) % cardImages.length;
+            document.getElementById("card-image").src = cardImages[currentIndex];
+            document.getElementById("card-text").innerHTML = cardTexts[currentIndex];
+        }
+    </script>
+</body>
+</html>
